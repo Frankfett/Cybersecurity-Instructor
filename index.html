@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Programs - CNM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0F1419;
+            --cyan: #00D9FF;
+            --red: #DC3545;
+            --gray-light: #F0F2F5;
+            --gray-dark: #2D3139;
+            --black: #000000;
+            --white: #FFFFFF;
+            --success: #28A745;
+            --warning: #FFC107;
+            --border-radius: 8px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--gray-light);
+            overflow-x: hidden;
+        }
+
+        /* ============ HEADER & NAV ============ */
+        header {
+            background: linear-gradient(135deg, var(--navy) 0%, #1a2333 100%);
+            color: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 217, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--cyan);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--cyan);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, #1a2333 50%, #0d1117 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -500px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -300px;
+            left: -300px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(220, 53, 69, 0.05) 0%, transparent 70%);
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .hero h1 .highlight {
+            color: var(--cyan);
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .certs {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .cert-badge {
+            background: rgba(0, 217, 255, 0.1);
+            border: 2px solid var(--cyan);
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 1rem;
+            transition: var(--transition);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0);
+        }
+
+        .cert-badge:hover {
+            background: rgba(0, 217, 255, 0.2);
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .cert-badge .cert-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--cyan);
+            color: var(--black);
+        }
+
+        .btn-primary:hover {
+            background-color: #00B8D4;
+            box-shadow: 0 8px 20px rgba(0, 217, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        /* ============ COURSES SECTION ============ */
+        .courses-section {
+            max-width: 1200px;
+            margin: -3rem auto 0;
+            padding: 3rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--navy);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .course-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            border-left: 4px solid var(--cyan);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 217, 255, 0.15);
+            border-left-color: var(--red);
+        }
+
+        .course-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+        }
+
+        .course-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            background-color: rgba(0, 217, 255, 0.1);
+            color: #0F1419;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge.advanced {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: var(--red);
+        }
+
+        .course-card .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ============ ACTIVITIES SECTION ============ */
+        .activities-section {
+            background: var(--white);
+            padding: 4rem 2rem;
+            margin-top: 3rem;
+        }
+
+        .activities-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .activities-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .search-filter {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            width: 250px;
+            transition: var(--transition);
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--cyan);
+            box-shadow: 0 0 10px rgba(0, 217, 255, 0.2);
+        }
+
+        .filter-select {
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            background-color: var(--white);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-select:hover,
+        .filter-select:focus {
+            border-color: var(--cyan);
+            outline: none;
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .activity-card {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--gray-dark) 100%);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.2) 0%, transparent 70%);
+            transition: var(--transition);
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--cyan);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+        }
+
+        .activity-card:hover::before {
+            top: -30%;
+            right: -30%;
+        }
+
+        .activity-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--cyan);
+            opacity: 0.3;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+        }
+
+        .activity-info {
+            position: relative;
+            z-index: 1;
+        }
+
+        .activity-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .activity-card p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .activity-level {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(0, 217, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .activity-level.beginner {
+            background: rgba(40, 167, 69, 0.2);
+            color: var(--success);
+        }
+
+        .activity-level.intermediate {
+            background: rgba(255, 193, 7, 0.2);
+            color: var(--warning);
+        }
+
+        .activity-level.advanced {
+            background: rgba(220, 53, 69, 0.2);
+            color: var(--red);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 3px solid var(--cyan);
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .certs {
+                gap: 1rem;
+            }
+
+            .cert-badge {
+                width: 100px;
+                height: 100px;
+                font-size: 0.75rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .activities-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">
+                🛡️ <span>CNM Cyber</span>Security
+            </div>
+            <ul>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#activities">Activities</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="mailto:instructor@cnm.edu">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Master <span class="highlight">Cybersecurity</span> Through Hands-On Learning</h1>
+            <p>Advanced coursework in Ethical Hacking, DFIR, Cyber Defense, and Security+</p>
+            
+            <div class="certs">
+                <div class="cert-badge">
+                    <div class="cert-icon">🔐</div>
+                    <div>CISSP</div>
+                </div>
+                <div class="cert-badge">
+                    <div class="cert-icon">🤖</div>
+                    <div>SecAI</div>
+                </div>
+                <div class="cert-badge">
+                    <div class="cert-icon">⚙️</div>
+                    <div>Security+</div>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#activities" class="btn btn-primary">Explore Activities</a>
+                <a href="#courses" class="btn btn-secondary">View Courses</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- COURSES SECTION -->
+    <section class="courses-section" id="courses">
+        <h2 class="section-title">Core Courses</h2>
+        <p class="section-subtitle">Industry-aligned training with certified instruction</p>
+        
+        <div class="courses-grid">
+            <div class="course-card">
+                <div class="course-icon">⚡</div>
+                <h3>Ethical Hacking</h3>
+                <p>Learn offensive security techniques to identify and exploit vulnerabilities in systems before malicious actors do.</p>
+                <div class="course-meta">
+                    <span class="badge advanced">Advanced</span>
+                    <span class="badge">Hands-On</span>
+                </div>
+                <button class="btn btn-primary">Explore</button>
+            </div>
+
+            <div class="course-card">
+                <div class="course-icon">🔎</div>
+                <h3>Digital Forensics & Incident Response</h3>
+                <p>Master the investigation of security incidents, evidence preservation, and forensic analysis techniques.</p>
+                <div class="course-meta">
+                    <span class="badge advanced">Advanced</span>
+                    <span class="badge">Investigation</span>
+                </div>
+                <button class="btn btn-primary">Explore</button>
+            </div>
+
+            <div class="course-card">
+                <div class="course-icon">🛡️</div>
+                <h3>Cyber Defense</h3>
+                <p>Build defensive security strategies to protect networks, systems, and data from modern cyber threats.</p>
+                <div class="course-meta">
+                    <span class="badge">Intermediate</span>
+                    <span class="badge">Defense</span>
+                </div>
+                <button class="btn btn-primary">Explore</button>
+            </div>
+
+            <div class="course-card">
+                <div class="course-icon">✓</div>
+                <h3>CompTIA Security+</h3>
+                <p>Preparation course for the industry-standard Security+ certification exam.</p>
+                <div class="course-meta">
+                    <span class="badge">Certification</span>
+                    <span class="badge">Intermediate</span>
+                </div>
+                <button class="btn btn-primary">Explore</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTIVITIES SECTION -->
+    <section class="activities-section" id="activities">
+        <div class="activities-container">
+            <div class="activities-header">
+                <h2 class="section-title">Lab Activities</h2>
+                <div class="search-filter">
+                    <input type="text" class="search-box" id="searchBox" placeholder="Search activities...">
+                    <select class="filter-select" id="filterDifficulty">
+                        <option value="">All Levels</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="activities-grid" id="activitiesGrid">
+                <!-- Activities will be dynamically generated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="about">
+        <p>&copy; 2024 Central New Mexico Community College - Cybersecurity Program</p>
+        <p>Instructor: Frank | CISSP, SecAI Certified</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">Building the next generation of cybersecurity professionals</p>
+    </footer>
+
+    <script>
+        // Activity Data
+        const activities = [
+            {
+                id: 1,
+                title: "Network Reconnaissance",
+                description: "Basic tools and techniques for network discovery",
+                level: "beginner",
+                file: "activity01.html"
+            },
+            {
+                id: 2,
+                title: "Port Scanning Fundamentals",
+                description: "Learn port scanning with Nmap",
+                level: "beginner",
+                file: "activity02.html"
+            },
+            {
+                id: 3,
+                title: "Vulnerability Assessment",
+                description: "Identify vulnerabilities in systems",
+                level: "intermediate",
+                file: "activity03.html"
+            },
+            {
+                id: 4,
+                title: "Metasploit Exploitation",
+                description: "Framework for penetration testing",
+                level: "intermediate",
+                file: "activity04.html"
+            },
+            {
+                id: 5,
+                title: "Wireless Security Testing",
+                description: "WPA2/WPA3 cracking and analysis",
+                level: "advanced",
+                file: "activity05.html"
+            },
+            {
+                id: 6,
+                title: "Forensic Evidence Collection",
+                description: "Proper chain of custody and evidence handling",
+                level: "intermediate",
+                file: "activity06.html"
+            },
+            {
+                id: 7,
+                title: "Memory Forensics Analysis",
+                description: "Extract and analyze volatile memory",
+                level: "advanced",
+                file: "activity07.html"
+            },
+            {
+                id: 8,
+                title: "Malware Analysis Lab",
+                description: "Sandbox environment for malware examination",
+                level: "advanced",
+                file: "activity08.html"
+            },
+            {
+                id: 9,
+                title: "Incident Response Playbook",
+                description: "Create effective IR procedures",
+                level: "intermediate",
+                file: "activity09.html"
+            },
+            {
+                id: 10,
+                title: "Security Hardening",
+                description: "System and network hardening techniques",
+                level: "beginner",
+                file: "activity10.html"
+            }
+        ];
+
+        // Render activities
+        function renderActivities(filter = {}) {
+            const grid = document.getElementById('activitiesGrid');
+            const searchTerm = (filter.search || '').toLowerCase();
+            const difficultyFilter = filter.difficulty || '';
+
+            const filtered = activities.filter(activity => {
+                const matchesSearch = activity.title.toLowerCase().includes(searchTerm) ||
+                                    activity.description.toLowerCase().includes(searchTerm);
+                const matchesDifficulty = !difficultyFilter || activity.level === difficultyFilter;
+                return matchesSearch && matchesDifficulty;
+            });
+
+            grid.innerHTML = filtered.map(activity => `
+                <a href="${activity.file}" class="activity-card">
+                    <div class="activity-number">#${String(activity.id).padStart(2, '0')}</div>
+                    <div class="activity-info">
+                        <h4>${activity.title}</h4>
+                        <p>${activity.description}</p>
+                        <span class="activity-level ${activity.level}">${activity.level.charAt(0).toUpperCase() + activity.level.slice(1)}</span>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        // Event Listeners
+        document.getElementById('searchBox').addEventListener('input', (e) => {
+            renderActivities({
+                search: e.target.value,
+                difficulty: document.getElementById('filterDifficulty').value
+            });
+        });
+
+        document.getElementById('filterDifficulty').addEventListener('change', (e) => {
+            renderActivities({
+                search: document.getElementById('searchBox').value,
+                difficulty: e.target.value
+            });
+        });
+
+        // Initial render
+        renderActivities();
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Add subtle scroll animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.course-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

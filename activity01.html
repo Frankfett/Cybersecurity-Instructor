@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cybersecurity Programs - CNM</title>
+    <title>Activity 01: Network Reconnaissance - CNM Cybersecurity</title>
     <style>
         * {
             margin: 0;
@@ -54,7 +53,7 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
             letter-spacing: -1px;
             display: flex;
@@ -96,12 +95,17 @@
             width: 100%;
         }
 
+        .breadcrumb {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-left: auto;
+        }
+
         /* ============ HERO SECTION ============ */
         .hero {
             background: linear-gradient(135deg, var(--navy) 0%, #1a2333 50%, #0d1117 100%);
             color: var(--white);
-            padding: 6rem 2rem;
-            text-align: center;
+            padding: 4rem 2rem;
             position: relative;
             overflow: hidden;
         }
@@ -117,17 +121,6 @@
             animation: float 20s ease-in-out infinite;
         }
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -300px;
-            left: -300px;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(220, 53, 69, 0.05) 0%, transparent 70%);
-            animation: float 25s ease-in-out infinite reverse;
-        }
-
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(30px); }
@@ -140,12 +133,24 @@
             z-index: 1;
         }
 
+        .activity-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 217, 255, 0.2);
+            border: 1px solid var(--cyan);
+            border-radius: 20px;
+            color: var(--cyan);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 2.8rem;
             margin-bottom: 1rem;
             font-weight: 800;
-            letter-spacing: -2px;
-            line-height: 1.1;
+            letter-spacing: -1px;
+            line-height: 1.2;
         }
 
         .hero h1 .highlight {
@@ -154,55 +159,169 @@
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             margin-bottom: 2rem;
             opacity: 0.9;
+            max-width: 700px;
         }
 
-        .certs {
+        .activity-meta {
             display: flex;
-            justify-content: center;
             gap: 2rem;
-            margin: 3rem 0;
             flex-wrap: wrap;
+            margin-bottom: 2rem;
         }
 
-        .cert-badge {
-            background: rgba(0, 217, 255, 0.1);
-            border: 2px solid var(--cyan);
-            border-radius: 50%;
-            width: 120px;
-            height: 120px;
+        .meta-item {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.85rem;
+            gap: 0.3rem;
+        }
+
+        .meta-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .meta-value {
+            font-size: 1.2rem;
             font-weight: 600;
-            text-align: center;
-            padding: 1rem;
-            transition: var(--transition);
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0);
         }
 
-        .cert-badge:hover {
-            background: rgba(0, 217, 255, 0.2);
-            box-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
-            transform: translateY(-5px);
+        /* ============ MAIN CONTENT ============ */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        .cert-badge .cert-icon {
-            font-size: 2rem;
+        .content-wrapper {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            margin: -2rem 2rem 3rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--cyan);
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: var(--navy);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* ============ INFO BOXES ============ */
+        .info-box {
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+            border-left: 4px solid;
+        }
+
+        .info-box.objective {
+            background: rgba(0, 217, 255, 0.08);
+            border-color: var(--cyan);
+        }
+
+        .info-box.objective h4 {
+            color: #0066cc;
+            margin-bottom: 0.8rem;
+        }
+
+        .info-box.warning {
+            background: rgba(220, 53, 69, 0.08);
+            border-color: var(--red);
+        }
+
+        .info-box.warning h4 {
+            color: var(--red);
+            margin-bottom: 0.8rem;
+        }
+
+        .info-box.tip {
+            background: rgba(40, 167, 69, 0.08);
+            border-color: var(--success);
+        }
+
+        .info-box.tip h4 {
+            color: var(--success);
+            margin-bottom: 0.8rem;
+        }
+
+        .info-box h4 {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .info-box p {
             margin-bottom: 0.5rem;
         }
 
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+        .info-box p:last-child {
+            margin-bottom: 0;
         }
 
+        /* ============ CODE BLOCKS ============ */
+        .code-block {
+            background: var(--navy);
+            color: var(--cyan);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            border: 1px solid var(--gray-dark);
+        }
+
+        .code-block .comment {
+            color: #6A9955;
+        }
+
+        .code-block .keyword {
+            color: var(--cyan);
+        }
+
+        .code-block .output {
+            color: #CE9178;
+        }
+
+        /* ============ BUTTONS ============ */
         .btn {
             padding: 12px 30px;
             font-size: 1rem;
@@ -227,270 +346,164 @@
         }
 
         .btn-secondary {
-            background-color: transparent;
+            background-color: var(--navy);
             color: var(--white);
-            border: 2px solid var(--white);
+            border: 2px solid var(--cyan);
         }
 
         .btn-secondary:hover {
-            background-color: var(--white);
+            background-color: var(--cyan);
             color: var(--navy);
             transform: translateY(-2px);
         }
 
-        /* ============ COURSES SECTION ============ */
-        .courses-section {
-            max-width: 1200px;
-            margin: -3rem auto 0;
-            padding: 3rem 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--navy);
-            text-align: center;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
-
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .course-card {
-            background: var(--white);
-            border-radius: var(--border-radius);
+        /* ============ INTERACTIVE TOOLS ============ */
+        .tools-section {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(220, 53, 69, 0.05) 100%);
             padding: 2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: var(--transition);
-            border-left: 4px solid var(--cyan);
-            position: relative;
-            overflow: hidden;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            margin: 2rem 0;
         }
 
-        .course-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
-        }
-
-        .course-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0, 217, 255, 0.15);
-            border-left-color: var(--red);
-        }
-
-        .course-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .course-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+        .tools-section h3 {
             color: var(--navy);
+            margin-top: 0;
         }
 
-        .course-card p {
-            color: #666;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .course-meta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 0.4rem 0.8rem;
-            background-color: rgba(0, 217, 255, 0.1);
-            color: #0F1419;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .badge.advanced {
-            background-color: rgba(220, 53, 69, 0.1);
-            color: var(--red);
-        }
-
-        .course-card .btn {
-            width: 100%;
-            text-align: center;
-        }
-
-        /* ============ ACTIVITIES SECTION ============ */
-        .activities-section {
-            background: var(--white);
-            padding: 4rem 2rem;
-            margin-top: 3rem;
-        }
-
-        .activities-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .activities-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .search-filter {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .search-box {
-            padding: 0.8rem 1.2rem;
-            border: 2px solid #ddd;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            width: 250px;
-            transition: var(--transition);
-        }
-
-        .search-box:focus {
-            outline: none;
-            border-color: var(--cyan);
-            box-shadow: 0 0 10px rgba(0, 217, 255, 0.2);
-        }
-
-        .filter-select {
-            padding: 0.8rem 1.2rem;
-            border: 2px solid #ddd;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            background-color: var(--white);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .filter-select:hover,
-        .filter-select:focus {
-            border-color: var(--cyan);
-            outline: none;
-        }
-
-        .activities-grid {
+        .tool-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
-        .activity-card {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--gray-dark) 100%);
-            color: var(--white);
+        .tool-card {
+            background: var(--white);
             padding: 1.5rem;
             border-radius: var(--border-radius);
-            text-decoration: none;
+            border: 2px solid #eee;
             transition: var(--transition);
-            border: 2px solid transparent;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 180px;
-            position: relative;
-            overflow: hidden;
+            text-align: center;
         }
 
-        .activity-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(0, 217, 255, 0.2) 0%, transparent 70%);
-            transition: var(--transition);
-        }
-
-        .activity-card:hover {
-            transform: translateY(-5px);
+        .tool-card:hover {
             border-color: var(--cyan);
-            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 217, 255, 0.15);
         }
 
-        .activity-card:hover::before {
-            top: -30%;
-            right: -30%;
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
         }
 
-        .activity-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--cyan);
-            opacity: 0.3;
-            position: absolute;
-            top: 10px;
-            right: 15px;
-        }
-
-        .activity-info {
-            position: relative;
-            z-index: 1;
-        }
-
-        .activity-card h4 {
-            font-size: 1.1rem;
+        .tool-card h4 {
+            color: var(--navy);
             margin-bottom: 0.5rem;
-            font-weight: 700;
+            font-size: 1rem;
         }
 
-        .activity-card p {
+        .tool-card p {
             font-size: 0.9rem;
-            opacity: 0.9;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        /* ============ CHECKLIST ============ */
+        .checklist {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid #eee;
+            margin: 1.5rem 0;
+        }
+
+        .checklist h4 {
+            color: var(--navy);
             margin-bottom: 1rem;
         }
 
-        .activity-level {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            background: rgba(0, 217, 255, 0.2);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
+        .checklist-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+            align-items: flex-start;
         }
 
-        .activity-level.beginner {
-            background: rgba(40, 167, 69, 0.2);
-            color: var(--success);
+        .checklist-item input[type="checkbox"] {
+            margin-top: 4px;
+            cursor: pointer;
+            accent-color: var(--cyan);
+            width: 18px;
+            height: 18px;
         }
 
-        .activity-level.intermediate {
-            background: rgba(255, 193, 7, 0.2);
-            color: var(--warning);
+        .checklist-item label {
+            cursor: pointer;
+            flex: 1;
         }
 
-        .activity-level.advanced {
-            background: rgba(220, 53, 69, 0.2);
-            color: var(--red);
+        .checklist-item input[type="checkbox"]:checked + label {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        /* ============ NAVIGATION ============ */
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #eee;
+            gap: 1rem;
+        }
+
+        .nav-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 10px 20px;
+            text-decoration: none;
+            background: var(--navy);
+            color: var(--white);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .nav-button:hover {
+            background: var(--cyan);
+            color: var(--navy);
+        }
+
+        .nav-spacer {
+            flex: 1;
+        }
+
+        /* ============ PROGRESS BAR ============ */
+        .progress-container {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--cyan), var(--success));
+            width: 10%;
+            border-radius: 10px;
+        }
+
+        .progress-text {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
         }
 
         /* ============ FOOTER ============ */
@@ -505,22 +518,18 @@
 
         footer p {
             opacity: 0.8;
+            margin-bottom: 0.5rem;
         }
 
         /* ============ RESPONSIVE ============ */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
 
-            .certs {
-                gap: 1rem;
-            }
-
-            .cert-badge {
-                width: 100px;
-                height: 100px;
-                font-size: 0.75rem;
+            .content-wrapper {
+                padding: 2rem;
+                margin: -1.5rem 1rem 2rem;
             }
 
             nav ul {
@@ -528,16 +537,27 @@
                 font-size: 0.9rem;
             }
 
-            .search-box {
+            .breadcrumb {
                 width: 100%;
+                margin-left: 0;
+                order: 3;
             }
 
-            .activities-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            nav {
+                flex-wrap: wrap;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .activity-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .tool-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .navigation {
+                flex-direction: column;
             }
         }
 
@@ -558,10 +578,10 @@
                 🛡️ <span>CNM Cyber</span>Security
             </div>
             <ul>
-                <li><a href="#courses">Courses</a></li>
-                <li><a href="#activities">Activities</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="mailto:instructor@cnm.edu">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#courses">Courses</a></li>
+                <li><a href="index.html#activities">Activities</a></li>
+                <li><span class="breadcrumb">Activity 01: Network Reconnaissance</span></li>
             </ul>
         </nav>
     </header>
@@ -569,245 +589,346 @@
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Master <span class="highlight">Cybersecurity</span> Through Hands-On Learning</h1>
-            <p>Advanced coursework in Ethical Hacking, DFIR, Cyber Defense, and Security+</p>
+            <span class="activity-badge">🔧 BEGINNER LEVEL</span>
+            <h1>Activity 01: <span class="highlight">Network Reconnaissance</span></h1>
+            <p>Learn the fundamental tools and techniques for network discovery. Network reconnaissance is the first step in any security assessment and ethical hacking engagement.</p>
             
-            <div class="certs">
-                <div class="cert-badge">
-                    <div class="cert-icon">🔐</div>
-                    <div>CISSP</div>
+            <div class="activity-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Difficulty</span>
+                    <span class="meta-value">Beginner</span>
                 </div>
-                <div class="cert-badge">
-                    <div class="cert-icon">🤖</div>
-                    <div>SecAI</div>
+                <div class="meta-item">
+                    <span class="meta-label">Duration</span>
+                    <span class="meta-value">2-3 hours</span>
                 </div>
-                <div class="cert-badge">
-                    <div class="cert-icon">⚙️</div>
-                    <div>Security+</div>
+                <div class="meta-item">
+                    <span class="meta-label">Tools Required</span>
+                    <span class="meta-value">Ping, Tracert, Nslookup</span>
                 </div>
-            </div>
-
-            <div class="cta-buttons">
-                <a href="#activities" class="btn btn-primary">Explore Activities</a>
-                <a href="#courses" class="btn btn-secondary">View Courses</a>
             </div>
         </div>
     </section>
 
-    <!-- COURSES SECTION -->
-    <section class="courses-section" id="courses">
-        <h2 class="section-title">Core Courses</h2>
-        <p class="section-subtitle">Industry-aligned training with certified instruction</p>
-        
-        <div class="courses-grid">
-            <div class="course-card">
-                <div class="course-icon">⚡</div>
-                <h3>Ethical Hacking</h3>
-                <p>Learn offensive security techniques to identify and exploit vulnerabilities in systems before malicious actors do.</p>
-                <div class="course-meta">
-                    <span class="badge advanced">Advanced</span>
-                    <span class="badge">Hands-On</span>
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <div class="content-wrapper">
+            <!-- LEARNING OBJECTIVES -->
+            <section class="section">
+                <h2>Learning Objectives</h2>
+                <div class="info-box objective">
+                    <h4>📚 What You'll Learn</h4>
+                    <ul style="margin-left: 1rem; margin-bottom: 0;">
+                        <li>Understand network topology and how devices communicate</li>
+                        <li>Use PING to verify host availability and measure latency</li>
+                        <li>Perform traceroute analysis to map network paths</li>
+                        <li>Query DNS records using nslookup and dig</li>
+                        <li>Gather passive and active reconnaissance information</li>
+                        <li>Analyze IP addresses and network ranges</li>
+                    </ul>
                 </div>
-                <button class="btn btn-primary">Explore</button>
+            </section>
+
+            <!-- INTRODUCTION -->
+            <section class="section">
+                <h2>Introduction</h2>
+                <p>Network reconnaissance is the process of gathering information about a target network before performing deeper security testing. It's an essential skill for both attackers and defenders. As a defender, understanding reconnaissance helps you identify what information is publicly available about your network and what measures to take to minimize exposure.</p>
+                
+                <p>There are two main types of reconnaissance:</p>
+                <ul>
+                    <li><strong>Passive Reconnaissance:</strong> Gathering information without directly interacting with the target (WHOIS queries, DNS searches, public databases)</li>
+                    <li><strong>Active Reconnaissance:</strong> Directly probing the target network (PING, traceroute, port scanning)</li>
+                </ul>
+
+                <div class="info-box warning">
+                    <h4>⚠️ Important Legal Notice</h4>
+                    <p>Network reconnaissance without authorization is illegal. Only perform these activities on systems you own or have explicit written permission to test. This lab uses a controlled lab environment provided by CNM.</p>
+                </div>
+            </section>
+
+            <!-- FUNDAMENTAL CONCEPTS -->
+            <section class="section">
+                <h2>Fundamental Concepts</h2>
+
+                <h3>IP Addresses and Network Ranges</h3>
+                <p>Every device on a network has a unique IP address. Understanding CIDR notation and network ranges is critical:</p>
+                <div class="code-block">
+                    <span class="comment"># IPv4 CIDR Notation Examples</span><br>
+                    192.168.1.0/24      <span class="comment"># Hosts from 192.168.1.1 to 192.168.1.254</span><br>
+                    10.0.0.0/8           <span class="comment"># Entire 10.0.0.0 network (Class A)</span><br>
+                    172.16.0.0/12        <span class="comment"># Private network range</span>
+                </div>
+
+                <h3>DNS Resolution</h3>
+                <p>The Domain Name System (DNS) translates domain names to IP addresses. During reconnaissance, DNS queries reveal valuable information:</p>
+                <ul>
+                    <li><strong>A Records:</strong> Map domain names to IPv4 addresses</li>
+                    <li><strong>AAAA Records:</strong> Map domain names to IPv6 addresses</li>
+                    <li><strong>MX Records:</strong> Mail exchange servers</li>
+                    <li><strong>NS Records:</strong> Nameservers for the domain</li>
+                    <li><strong>TXT Records:</strong> Text records (SPF, DKIM, verification)</li>
+                </ul>
+
+                <h3>ICMP and Latency</h3>
+                <p>The Internet Control Message Protocol (ICMP) is used by PING to test connectivity. Response times indicate network latency and can reveal network topology:</p>
+                <ul>
+                    <li><strong>Low latency:</strong> &lt;50ms - Local or well-connected networks</li>
+                    <li><strong>Medium latency:</strong> 50-200ms - Regional or continental distances</li>
+                    <li><strong>High latency:</strong> &gt;200ms - Intercontinental or poor connections</li>
+                </ul>
+            </section>
+
+            <!-- TOOLS & TECHNIQUES -->
+            <section class="section">
+                <h2>Tools and Techniques</h2>
+
+                <div class="tools-section">
+                    <h3>Essential Reconnaissance Tools</h3>
+                    <div class="tool-grid">
+                        <div class="tool-card">
+                            <div class="tool-icon">📡</div>
+                            <h4>PING</h4>
+                            <p>Test host availability and measure response time</p>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">🗺️</div>
+                            <h4>Tracert/Traceroute</h4>
+                            <p>Map the path packets take to a destination</p>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">📚</div>
+                            <h4>Nslookup</h4>
+                            <p>Query DNS records from command line</p>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">⛏️</div>
+                            <h4>DIG</h4>
+                            <p>Advanced DNS lookup with detailed output</p>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">🔍</div>
+                            <h4>Whois</h4>
+                            <p>Lookup domain registration information</p>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">🌐</div>
+                            <h4>Netstat</h4>
+                            <p>Display network connections and statistics</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>PING Technique</h3>
+                <p>Basic syntax and common options:</p>
+                <div class="code-block">
+                    <span class="comment"># Ping a host</span><br>
+                    ping 8.8.8.8<br>
+                    <br>
+                    <span class="comment"># Ping with limited count (Windows)</span><br>
+                    ping -n 4 google.com<br>
+                    <br>
+                    <span class="comment"># Ping with limited count (Linux/Mac)</span><br>
+                    ping -c 4 google.com<br>
+                    <br>
+                    <span class="comment"># Ping with timeout</span><br>
+                    ping -w 5000 example.com
+                </div>
+
+                <h3>Traceroute Technique</h3>
+                <p>Trace the network path to a destination:</p>
+                <div class="code-block">
+                    <span class="comment"># Windows traceroute</span><br>
+                    tracert example.com<br>
+                    <br>
+                    <span class="comment"># Linux/Mac traceroute</span><br>
+                    traceroute example.com<br>
+                    <br>
+                    <span class="comment"># Advanced traceroute with port specification</span><br>
+                    traceroute -T -p 443 example.com
+                </div>
+
+                <h3>DNS Lookup Techniques</h3>
+                <div class="code-block">
+                    <span class="comment"># Basic nslookup</span><br>
+                    nslookup google.com<br>
+                    <br>
+                    <span class="comment"># Query specific DNS record types</span><br>
+                    nslookup -type=MX example.com<br>
+                    nslookup -type=NS example.com<br>
+                    <br>
+                    <span class="comment"># DIG with detailed output</span><br>
+                    dig google.com<br>
+                    dig google.com +short<br>
+                    dig google.com ANY
+                </div>
+
+                <div class="info-box tip">
+                    <h4>💡 Pro Tip</h4>
+                    <p>Use DIG for more detailed DNS output and better control over queries. DIG shows DNSSEC validation, query time, and other metadata that helps understand DNS infrastructure.</p>
+                </div>
+            </section>
+
+            <!-- PRACTICAL EXERCISES -->
+            <section class="section">
+                <h2>Hands-On Exercises</h2>
+
+                <h3>Exercise 1: Basic Host Discovery</h3>
+                <p><strong>Objective:</strong> Ping several well-known hosts and document the results.</p>
+                <ol>
+                    <li>Open Command Prompt or Terminal</li>
+                    <li>Ping the following hosts:
+                        <ul>
+                            <li>8.8.8.8 (Google Public DNS)</li>
+                            <li>1.1.1.1 (Cloudflare DNS)</li>
+                            <li>example.com</li>
+                        </ul>
+                    </li>
+                    <li>Record the response times and note any timeouts</li>
+                    <li>Document your findings in a text file</li>
+                </ol>
+
+                <h3>Exercise 2: Network Path Mapping</h3>
+                <p><strong>Objective:</strong> Use traceroute to map the network path to a destination.</p>
+                <ol>
+                    <li>Run traceroute to google.com</li>
+                    <li>Identify the number of hops to reach the destination</li>
+                    <li>Note which hop takes the longest time</li>
+                    <li>Compare results with traceroute to a geographically distant server</li>
+                </ol>
+
+                <h3>Exercise 3: DNS Enumeration</h3>
+                <p><strong>Objective:</strong> Gather DNS information about a domain.</p>
+                <ol>
+                    <li>Use nslookup to query A records for example.com</li>
+                    <li>Query MX records to find mail servers</li>
+                    <li>Query NS records to identify authoritative nameservers</li>
+                    <li>Use DIG for a comprehensive DNS query</li>
+                </ol>
+
+                <h3>Exercise 4: Network Baseline</h3>
+                <p><strong>Objective:</strong> Create a baseline of your local network.</p>
+                <ol>
+                    <li>Use ipconfig (Windows) or ifconfig (Linux/Mac) to view your network configuration</li>
+                    <li>Identify your IP address, subnet mask, and gateway</li>
+                    <li>Use arp -a to view the ARP table (local network devices)</li>
+                    <li>Document this baseline for future comparison</li>
+                </ol>
+            </section>
+
+            <!-- SUBMISSION CHECKLIST -->
+            <section class="section">
+                <h2>Submission Checklist</h2>
+                <div class="checklist">
+                    <h4>Complete the following before submitting:</h4>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check1">
+                        <label for="check1">Completed all 4 practical exercises</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check2">
+                        <label for="check2">Documented ping results with timestamps and response times</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check3">
+                        <label for="check3">Created traceroute output analysis for at least 2 destinations</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check4">
+                        <label for="check4">Performed DNS enumeration and documented DNS records</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check5">
+                        <label for="check5">Created a network baseline document with your local configuration</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check6">
+                        <label for="check6">Wrote a summary paragraph explaining what you learned</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check7">
+                        <label for="check7">Followed all legal and ethical guidelines</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- KEY TAKEAWAYS -->
+            <section class="section">
+                <h2>Key Takeaways</h2>
+                <div class="info-box objective">
+                    <h4>🎯 Remember These Points</h4>
+                    <ul style="margin-left: 1rem; margin-bottom: 0;">
+                        <li>Network reconnaissance is foundational to cybersecurity work</li>
+                        <li>Always obtain authorization before performing any reconnaissance</li>
+                        <li>Simple tools like PING and traceroute reveal valuable network information</li>
+                        <li>DNS queries can expose infrastructure and email servers</li>
+                        <li>Network latency patterns can indicate network topology and bottlenecks</li>
+                        <li>Baseline documentation helps detect anomalies and unauthorized changes</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- RESOURCES -->
+            <section class="section">
+                <h2>Additional Resources</h2>
+                <ul>
+                    <li><strong>RFC 2615:</strong> ICMP Protocol Specification</li>
+                    <li><strong>RFC 1035:</strong> Domain Names - Implementation and Specification</li>
+                    <li><strong>SANS Reconnaissance Checklist:</strong> Security assessment resource</li>
+                    <li><strong>Offensive Security Recon Guide:</strong> Comprehensive reconnaissance methodology</li>
+                    <li><strong>Man pages:</strong> ping, traceroute, nslookup, dig, whois</li>
+                </ul>
+            </section>
+
+            <!-- PROGRESS BAR -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-text">Activity 1 of 10 (10% complete)</div>
             </div>
 
-            <div class="course-card">
-                <div class="course-icon">🔎</div>
-                <h3>Digital Forensics & Incident Response</h3>
-                <p>Master the investigation of security incidents, evidence preservation, and forensic analysis techniques.</p>
-                <div class="course-meta">
-                    <span class="badge advanced">Advanced</span>
-                    <span class="badge">Investigation</span>
-                </div>
-                <button class="btn btn-primary">Explore</button>
-            </div>
-
-            <div class="course-card">
-                <div class="course-icon">🛡️</div>
-                <h3>Cyber Defense</h3>
-                <p>Build defensive security strategies to protect networks, systems, and data from modern cyber threats.</p>
-                <div class="course-meta">
-                    <span class="badge">Intermediate</span>
-                    <span class="badge">Defense</span>
-                </div>
-                <button class="btn btn-primary">Explore</button>
-            </div>
-
-            <div class="course-card">
-                <div class="course-icon">✓</div>
-                <h3>CompTIA Security+</h3>
-                <p>Preparation course for the industry-standard Security+ certification exam.</p>
-                <div class="course-meta">
-                    <span class="badge">Certification</span>
-                    <span class="badge">Intermediate</span>
-                </div>
-                <button class="btn btn-primary">Explore</button>
+            <!-- NAVIGATION -->
+            <div class="navigation">
+                <a href="index.html" class="nav-button">← Back to Activities</a>
+                <div class="nav-spacer"></div>
+                <a href="activity02.html" class="nav-button">Next Activity →</a>
             </div>
         </div>
-    </section>
-
-    <!-- ACTIVITIES SECTION -->
-    <section class="activities-section" id="activities">
-        <div class="activities-container">
-            <div class="activities-header">
-                <h2 class="section-title">Lab Activities</h2>
-                <div class="search-filter">
-                    <input type="text" class="search-box" id="searchBox" placeholder="Search activities...">
-                    <select class="filter-select" id="filterDifficulty">
-                        <option value="">All Levels</option>
-                        <option value="beginner">Beginner</option>
-                        <option value="intermediate">Intermediate</option>
-                        <option value="advanced">Advanced</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="activities-grid" id="activitiesGrid">
-                <!-- Activities will be dynamically generated here -->
-            </div>
-        </div>
-    </section>
+    </div>
 
     <!-- FOOTER -->
-    <footer id="about">
+    <footer>
         <p>&copy; 2024 Central New Mexico Community College - Cybersecurity Program</p>
         <p>Instructor: Frank | CISSP, SecAI Certified</p>
-        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">Building the next generation of cybersecurity professionals</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">Activity 01: Network Reconnaissance</p>
     </footer>
 
     <script>
-        // Activity Data
-        const activities = [
-            {
-                id: 1,
-                title: "Network Reconnaissance",
-                description: "Basic tools and techniques for network discovery",
-                level: "beginner",
-                file: "activity01.html"
-            },
-            {
-                id: 2,
-                title: "Port Scanning Fundamentals",
-                description: "Learn port scanning with Nmap",
-                level: "beginner",
-                file: "activity02.html"
-            },
-            {
-                id: 3,
-                title: "Vulnerability Assessment",
-                description: "Identify vulnerabilities in systems",
-                level: "intermediate",
-                file: "activity03.html"
-            },
-            {
-                id: 4,
-                title: "Metasploit Exploitation",
-                description: "Framework for penetration testing",
-                level: "intermediate",
-                file: "activity04.html"
-            },
-            {
-                id: 5,
-                title: "Wireless Security Testing",
-                description: "WPA2/WPA3 cracking and analysis",
-                level: "advanced",
-                file: "activity05.html"
-            },
-            {
-                id: 6,
-                title: "Forensic Evidence Collection",
-                description: "Proper chain of custody and evidence handling",
-                level: "intermediate",
-                file: "activity06.html"
-            },
-            {
-                id: 7,
-                title: "Memory Forensics Analysis",
-                description: "Extract and analyze volatile memory",
-                level: "advanced",
-                file: "activity07.html"
-            },
-            {
-                id: 8,
-                title: "Malware Analysis Lab",
-                description: "Sandbox environment for malware examination",
-                level: "advanced",
-                file: "activity08.html"
-            },
-            {
-                id: 9,
-                title: "Incident Response Playbook",
-                description: "Create effective IR procedures",
-                level: "intermediate",
-                file: "activity09.html"
-            },
-            {
-                id: 10,
-                title: "Security Hardening",
-                description: "System and network hardening techniques",
-                level: "beginner",
-                file: "activity10.html"
-            }
-        ];
-
-        // Render activities
-        function renderActivities(filter = {}) {
-            const grid = document.getElementById('activitiesGrid');
-            const searchTerm = (filter.search || '').toLowerCase();
-            const difficultyFilter = filter.difficulty || '';
-
-            const filtered = activities.filter(activity => {
-                const matchesSearch = activity.title.toLowerCase().includes(searchTerm) ||
-                                    activity.description.toLowerCase().includes(searchTerm);
-                const matchesDifficulty = !difficultyFilter || activity.level === difficultyFilter;
-                return matchesSearch && matchesDifficulty;
-            });
-
-            grid.innerHTML = filtered.map(activity => `
-                <a href="${activity.file}" class="activity-card">
-                    <div class="activity-number">#${String(activity.id).padStart(2, '0')}</div>
-                    <div class="activity-info">
-                        <h4>${activity.title}</h4>
-                        <p>${activity.description}</p>
-                        <span class="activity-level ${activity.level}">${activity.level.charAt(0).toUpperCase() + activity.level.slice(1)}</span>
-                    </div>
-                </a>
-            `).join('');
-        }
-
-        // Event Listeners
-        document.getElementById('searchBox').addEventListener('input', (e) => {
-            renderActivities({
-                search: e.target.value,
-                difficulty: document.getElementById('filterDifficulty').value
-            });
+        // Update progress bar based on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            const progressFill = document.querySelector('.progress-fill');
+            progressFill.style.width = Math.min(scrolled, 100) + '%';
         });
-
-        document.getElementById('filterDifficulty').addEventListener('change', (e) => {
-            renderActivities({
-                search: document.getElementById('searchBox').value,
-                difficulty: e.target.value
-            });
-        });
-
-        // Initial render
-        renderActivities();
 
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
-                    }
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
 
-        // Add subtle scroll animation
+        // Add animation to info boxes on scroll
+        const infoBoxes = document.querySelectorAll('.info-box');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -815,13 +936,28 @@
                     entry.target.style.transform = 'translateY(0)';
                 }
             });
+        }, observerOptions);
+
+        infoBoxes.forEach(box => {
+            box.style.opacity = '0';
+            box.style.transform = 'translateY(20px)';
+            box.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(box);
         });
 
-        document.querySelectorAll('.course-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
+        // Persist checklist state in localStorage
+        const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            // Load state from localStorage
+            const saved = localStorage.getItem('activity01-' + checkbox.id);
+            if (saved) {
+                checkbox.checked = JSON.parse(saved);
+            }
+
+            // Save state on change
+            checkbox.addEventListener('change', () => {
+                localStorage.setItem('activity01-' + checkbox.id, JSON.stringify(checkbox.checked));
+            });
         });
     </script>
 </body>
